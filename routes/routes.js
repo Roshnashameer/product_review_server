@@ -5,8 +5,9 @@ const user=require("../controller/userControler")
 
 const {createUser, loginUser}=require("../middlewares/validationMiddleware")
 const { getProduct, getAllProducts, rateProduct } = require('../controller/pdtControler')
-const { getComments, addComment, addReply, deleteComment, deleteReply,  likeReply, likeComment } = require('../controller/commentController');
+const { getComments, addComment, addReply, deleteComment, deleteReply} = require('../controller/commentController');
 const { jwtMiddleware } = require('../middlewares/jwtMiddleware')
+const { likeTarget, unlikeTarget } = require('../controller/likeController')
 
 // User creation
 router.post('/signup',createUser,user.signUp)
@@ -28,10 +29,10 @@ router.post('/:id/rate', jwtMiddleware,rateProduct);
 router.delete('/comments/:commentId',jwtMiddleware, deleteComment);
 // Delete reply comment
 router.delete('/comments/:commentId/replies/:replyId',jwtMiddleware,deleteReply);
-// like comment
-// router.post('/comments/:commentId/like',jwtMiddleware, likeComment);
-// like reply
-// router.post('/comments/:commentId/replies/:replyId/like',jwtMiddleware, likeReply);
+// like 
+router.post('/like',jwtMiddleware, likeTarget);
+// unlike
+router.post('/unlike',jwtMiddleware, unlikeTarget);
 
 
 module.exports=router

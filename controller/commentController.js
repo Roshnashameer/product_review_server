@@ -1,5 +1,6 @@
 const Comment = require('../models/comment');
-const User = require('../models/userModel')
+const User = require('../models/userModel');
+
 
 exports.getComments = async (req, res) => {
     try {
@@ -92,32 +93,3 @@ exports.deleteReply = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-// exports.likeCommand = async (req, res) => {
-    
-//     try {
-//         const comment = await Comment.findById(req.params.commentId);
-//         if (!comment) {
-//             return res.status(404).json({ message: 'Comment not found' });
-//         }
-//         comment.likes += 1;
-//         await comment.save();
-//         res.json(comment);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// }
-// exports.likeReply = async (req, res) => {
-    
-//     try {
-//         const comment = await Comment.findById(req.params.commentId);
-//         if (!comment) {
-//             return res.status(404).json({ message: 'Reply not found' });
-//         }
-//         comment.likes += 1;
-//         await comment.save();
-//         res.json(comment);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// }
-
